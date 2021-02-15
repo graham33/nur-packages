@@ -18,6 +18,7 @@ rec {
 
   python3 = pkgs.python3.override {
     packageOverrides = pySelf: pySuper: {
+      authcaptureproxy = pySelf.callPackage ./pkgs/authcaptureproxy { };
       fiblary3 = pySelf.callPackage ./pkgs/fiblary3 { };
       garminconnect = pySelf.callPackage ./pkgs/garminconnect { };
       hass-smartbox = pySelf.callPackage ./pkgs/hass-smartbox { };
