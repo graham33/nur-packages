@@ -1,4 +1,5 @@
-{ lib, stdenv
+{ lib
+, stdenv
 , buildPythonPackage
 , fetchFromGitHub
 , aiohttp
@@ -25,6 +26,10 @@ buildPythonPackage rec {
     sha256 = "1r3gvizrknbv036pvxid1l726wkb0l43bdaz5y879s7j3ipyb464";
   };
 
+  propagatedBuildInputs = [
+    six
+  ];
+
   checkInputs = [
     aiohttp
     eventlet
@@ -36,14 +41,14 @@ buildPythonPackage rec {
     pytestCheckHook
   ];
 
-  doCheck = !stdenv.isDarwin;
-
   preCheck = lib.optionalString stdenv.isLinux ''
     echo "nameserver 127.0.0.1" > resolv.conf
     export NIX_REDIRECTS=/etc/protocols=${iana-etc}/etc/protocols:/etc/resolv.conf=$(realpath resolv.conf) \
       LD_PRELOAD=${libredirect}/lib/libredirect.so
   '';
-  postCheck = "unset NIX_REDIRECTS LD_PRELOAD";
+  postCheck = ''
+    unset NIX_REDIRECTS LD_PRELOAD
+  '';
 
   # somehow effective log level does not change?
   disabledTests = [ "test_logger" ];
