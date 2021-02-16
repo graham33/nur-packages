@@ -42,6 +42,6 @@ buildPythonPackage rec {
     '';
     homepage = "https://github.com/miguelgrinberg/python-socketio/";
     license = with licenses; [ mit ];
-    maintainers = with maintainers; [ graham33 ];
+    #maintainers = with maintainers; [ graham33 ];
   };
 }

@@ -62,6 +62,6 @@ buildPythonPackage rec {
     '';
     homepage = "https://github.com/miguelgrinberg/python-engineio/";
     license = with licenses; [ mit ];
-    maintainers = with maintainers; [ graham33 ];
+    #maintainers = with maintainers; [ graham33 ];
   };
 }
