@@ -25,8 +25,8 @@ buildPythonPackage rec {
     # TODO: fix
     owner = "graham33";
     repo = "fiblary";
-    rev = "0d04befbaacbe56a3c59ca4fb862732639abebeb";
-    sha256 = "1h332f68mq89qshqwn781wzz5mg2359j0636j2qr8fh3jw10kkzp";
+    rev = "bda5e5434adf446e8659223816ec7cc9452fa393";
+    sha256 = "1fww6ackarn4sdlwwkk22x3lcbh1m1rjx9yl4ksbvakhh1jfycii";
   };
 
   nativeBuildInputs = [
