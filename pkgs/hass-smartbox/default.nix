@@ -2,7 +2,9 @@
 , buildPythonPackage
 , python
 , fetchFromGitHub
+, homeassistant
 , smartbox
+, voluptuous
 , pytest-aiohttp
 , pytest-asyncio
 , pytest-cov
@@ -26,7 +28,9 @@ buildPythonPackage rec {
   };
 
   propagatedBuildInputs = [
+    homeassistant
     smartbox
+    voluptuous
   ];
 
   installPhase = ''
