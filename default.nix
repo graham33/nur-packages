@@ -20,6 +20,7 @@ let
     homeassistant-stubs = pySelf.callPackage ./pkgs/homeassistant-stubs { };
     libdyson = pySelf.callPackage ./pkgs/libdyson { };
     libpurecool = pySelf.callPackage ./pkgs/libpurecool { };
+    monkeytype = pySelf.callPackage ./pkgs/monkeytype { };
     pynut2 = pySelf.callPackage ./pkgs/pynut2 { };
     ring_doorbell = pySelf.callPackage ./pkgs/ring_doorbell { };
     tesla-custom-component = pySelf.callPackage ./pkgs/tesla-custom-component { };
