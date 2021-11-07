@@ -46,6 +46,8 @@ let
   };
   python39Packages = python39.pkgs;
 
+  pkg_21-11 = pkg: if (builtins.match "^21\.11.*" pkgs.lib.version != null) then pkg else null;
+
 in rec {
   inherit pkgs; # for debugging
 
@@ -62,8 +64,8 @@ in rec {
   ;
 
   # packages to cache (21.11/unstable)
-  hass-smartbox = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.hass-smartbox else null;
-  homeassistant = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.homeassistant else null;
-  homeassistant-stubs = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.homeassistant-stubs else null;
-  pytest-homeassistant-custom-component = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.pytest-homeassistant-custom-component else null;
+  hass-smartbox = pkg_21-11 python39Packages.hass-smartbox;
+  homeassistant = pkg_21-11 python39Packages.homeassistant;
+  homeassistant-stubs = pkg_21-11 python39Packages.homeassistant-stubs;
+  pytest-homeassistant-custom-component = pkg_21-11 python39Packages.pytest-homeassistant-custom-component;
 }
