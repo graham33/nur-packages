@@ -46,8 +46,6 @@ let
   };
   python39Packages = python39.pkgs;
 
-  python3 = python39;
-  python3Packages = python39Packages;
 in rec {
   inherit pkgs; # for debugging
 
@@ -56,13 +54,15 @@ in rec {
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
+  inherit python39 python39Packages;
+
   # packages to cache (all versions)
-  inherit (python3Packages)
+  inherit (python39Packages)
     smartbox
   ;
 } // pkgs.lib.optionalAttrs (pkgs.lib.hasPrefix "21.11" pkgs.lib.version) {
   # packages to cache (21.11/unstable)
-  inherit (python3Packages)
+  inherit (python39Packages)
     hass-smartbox
     homeassistant
     homeassistant-stubs
