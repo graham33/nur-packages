@@ -35,13 +35,6 @@ let
     teslajsonpy = pySelf.callPackage ./pkgs/teslajsonpy { };
     typer = pySelf.callPackage ./pkgs/typer { };
   };
-in rec {
-  inherit pkgs; # for debugging
-
-  # The `lib`, `modules`, and `overlay` names are special
-  lib = import ./lib { inherit pkgs; }; # functions
-  modules = import ./modules; # NixOS modules
-  overlays = import ./overlays; # nixpkgs overlays
 
   python38 = pkgs.python38.override {
     packageOverrides = pyPackageOverrides;
@@ -55,7 +48,14 @@ in rec {
 
   python3 = python39;
   python3Packages = python39Packages;
+in rec {
+  inherit pkgs; # for debugging
 
+  # The `lib`, `modules`, and `overlay` names are special
+  lib = import ./lib { inherit pkgs; }; # functions
+  modules = import ./modules; # NixOS modules
+  overlays = import ./overlays; # nixpkgs overlays
+} // pkgs.lib.optionalAttrs (pkgs.lib.hasPrefix "21.11" pkgs.lib.version) {
   # TODO: test
-  tmp = python3Packages.homeassistant-stubs;
+  inherit (python3Packages) homeassistant-stubs;
 }
