@@ -55,4 +55,7 @@ in rec {
 
   python3 = python39;
   python3Packages = python39Packages;
+
+  # TODO: test
+  tmp = python3Packages.homeassistant-stubs;
 }
