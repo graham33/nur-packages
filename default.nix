@@ -60,12 +60,10 @@ in rec {
   inherit (python39Packages)
     smartbox
   ;
-} // pkgs.lib.optionalAttrs (pkgs.lib.hasPrefix "21.11" pkgs.lib.version) {
+
   # packages to cache (21.11/unstable)
-  inherit (python39Packages)
-    hass-smartbox
-    homeassistant
-    homeassistant-stubs
-    pytest-homeassistant-custom-component
-  ;
+  hass-smartbox = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.hass-smartbox else null;
+  homeassistant = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.homeassistant else null;
+  homeassistant-stubs = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.homeassistant-stubs else null;
+  pytest-homeassistant-custom-component = if (builtins.match "^21\.11" pkgs.lib.version != null) then python39Packages.pytest-homeassistant-custom-component else null;
 }
