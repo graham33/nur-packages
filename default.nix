@@ -55,7 +55,17 @@ in rec {
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
+
+  # packages to cache (all versions)
+  inherit (python3Packages)
+    smartbox
+  ;
 } // pkgs.lib.optionalAttrs (pkgs.lib.hasPrefix "21.11" pkgs.lib.version) {
-  # TODO: test
-  inherit (python3Packages) homeassistant-stubs;
+  # packages to cache (21.11/unstable)
+  inherit (python3Packages)
+    hass-smartbox
+    homeassistant
+    homeassistant-stubs
+    pytest-homeassistant-custom-component
+  ;
 }
