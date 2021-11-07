@@ -54,6 +54,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     homeassistant
     pytest
+    pytest-socket
     requests-mock
     sqlalchemy
   ];
@@ -64,7 +65,6 @@ buildPythonPackage rec {
     mock-open
     pytest-aiohttp
     pytest-cov
-    pytest-socket
     pytest-sugar
     pytest-timeout
     pytest-xdist
