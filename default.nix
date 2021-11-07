@@ -43,14 +43,6 @@ in rec {
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  # TODO: fix
-  #enroot = pkgs.callPackage ./pkgs/enroot { };
-
-  python37 = pkgs.python37.override {
-    packageOverrides = pyPackageOverrides;
-  };
-  python37Packages = python37.pkgs;
-
   python38 = pkgs.python38.override {
     packageOverrides = pyPackageOverrides;
   };
