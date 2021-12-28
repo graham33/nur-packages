@@ -37,6 +37,8 @@ let
   };
 
   home-assistant = pkgs.home-assistant.override {
+    # TODO: fix upstream
+    extraPackages = ps: [ps.ifaddr];
     packageOverrides = pyPackageOverrides;
   };
 
