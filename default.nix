@@ -23,7 +23,7 @@ let
     });
     homeassistant-stubs = pySelf.callPackage ./pkgs/homeassistant-stubs { };
     libdyson = pySelf.callPackage ./pkgs/libdyson { };
-    libpurecool = pySelf.callPackage ./pkgs/libpurecool { };
+    # libpurecool = pySelf.callPackage ./pkgs/libpurecool { };
     monkeytype = pySelf.callPackage ./pkgs/monkeytype { };
     pynut2 = pySelf.callPackage ./pkgs/pynut2 { };
     pytest-homeassistant-custom-component = pySelf.callPackage ./pkgs/pytest-homeassistant-custom-component { };
