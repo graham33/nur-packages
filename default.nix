@@ -17,7 +17,7 @@ let
     ha-dyson-cloud = pySelf.callPackage ./pkgs/ha-dyson-cloud { };
     haManifestRequirementsCheckHook = pySelf.callPackage pkgs/build-support/ha-custom-components/ha-manifest-requirements-check-hook.nix {};
     hass-smartbox = pySelf.callPackage ./pkgs/hass-smartbox { };
-    homeassistant = (pySelf.toPythonModule pkgs.home-assistant).overrideAttrs (o: {
+    homeassistant = (pySelf.toPythonModule home-assistant).overrideAttrs (o: {
       # tests take a really long time
       doInstallCheck = false;
     });
@@ -49,6 +49,8 @@ in rec {
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
+
+  inherit home-assistant;
 
   # packages to cache (all versions)
   inherit (home-assistant.python.pkgs)
