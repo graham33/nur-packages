@@ -6,6 +6,7 @@
 with home-assistant.python.pkgs; buildHomeAssistantCustomComponent rec {
   pname = "hass-smartbox";
   version = "0.8.0-pre39c4f64";
+  format = "other";
   component-name = "smartbox";
 
   src = fetchFromGitHub {
