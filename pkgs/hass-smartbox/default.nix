@@ -33,6 +33,11 @@ with home-assistant.python.pkgs; buildHomeAssistantCustomComponent rec {
     pytestCheckHook
   ];
 
+  installPhase = ''
+    mkdir -p $out/custom_components
+    cp -r custom_components/${component-name} $out/custom_components/
+  '';
+
   meta = with lib; {
     homepage = "https://github.com/graham33/hass-smartbox";
     license = licenses.mit;

@@ -18,13 +18,6 @@ with home-assistant.python.pkgs; let
 in buildPythonPackage (rec {
   inherit pname version src;
 
-  installPhase = ''
-    mkdir -p $out/custom_components
-    cp -r custom_components/${component-name} $out/custom_components/
-  '';
-
-  doCheck = true;
-
   checkInputs = [
     haManifestRequirementsCheckHook
   ] ++ (args.checkInputs or []);
