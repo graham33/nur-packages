@@ -11,14 +11,26 @@
 let
   myPackages = pkgs.lib.makeScope pkgs.newScope (self: with self; {
 
+    buildHomeAssistantCustomComponent = callPackage pkgs/build-support/build-home-assistant-custom-component {};
+
+    hass-smartbox = callPackage ./pkgs/hass-smartbox {};
+
+    home-assistant = (pkgs.home-assistant.override {
+      # TODO: fix upstream
+      extraPackages = ps: [ps.ifaddr];
+      packageOverrides = homeAssistantPackageOverrides;
+    }).overrideAttrs (o: {
+      # tests take a really long time
+      doInstallCheck = false;
+    });
+
     homeAssistantPackageOverrides = pySelf: pySuper: rec {
+
       authcaptureproxy = pySelf.callPackage ./pkgs/authcaptureproxy { };
       fiblary3 = pySelf.callPackage ./pkgs/fiblary3 { };
       garminconnect = pySelf.callPackage ./pkgs/garminconnect { };
       ha-dyson = pySelf.callPackage ./pkgs/ha-dyson { };
       ha-dyson-cloud = pySelf.callPackage ./pkgs/ha-dyson-cloud { };
-      haManifestRequirementsCheckHook = pySelf.callPackage pkgs/build-support/ha-custom-components/ha-manifest-requirements-check-hook.nix {};
-      hass-smartbox = pySelf.callPackage ./pkgs/hass-smartbox { };
       homeassistant = (pySelf.toPythonModule home-assistant);
       homeassistant-stubs = pySelf.callPackage ./pkgs/homeassistant-stubs { };
       libdyson = pySelf.callPackage ./pkgs/libdyson { };
@@ -37,15 +49,6 @@ let
       simplisafe-python = null;
     };
 
-    home-assistant = (pkgs.home-assistant.override {
-      # TODO: fix upstream
-      extraPackages = ps: [ps.ifaddr];
-      packageOverrides = homeAssistantPackageOverrides;
-    }).overrideAttrs (o: {
-      # tests take a really long time
-      doInstallCheck = false;
-    });
-
   });
 
   # pkg_21-11 = pkg: if (builtins.match "^21\.11.*" pkgs.lib.version != null) then pkg else null;
@@ -55,11 +58,13 @@ in rec {
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  inherit (myPackages) home-assistant homeAssistantPackageOverrides;
+  inherit (myPackages)
+    hass-smartbox
+    home-assistant
+    homeAssistantPackageOverrides;
 
   # packages to cache (all versions)
   inherit (home-assistant.python.pkgs)
-    hass-smartbox
     homeassistant
     homeassistant-stubs
     pytest-homeassistant-custom-component
