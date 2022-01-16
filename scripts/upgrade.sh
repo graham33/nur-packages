@@ -68,6 +68,11 @@ upgrade_github_release() {
         release_tag=$(latest_github_release $org $repo)
         rev=$release_tag
         version=$(version_from_tag $release_tag)
+        current_version=$(sed pkgs/$repo/default.nix -n -e "s/^ *version = \"\([^\"]*\)\".*$/\1/p")
+        if [ $(semver compare $version $current_version) -lt 0 ]; then
+            echo "Not upgrading $org/$repo automatically since current version $current_version is newer than latest release $version"
+            return
+        fi
     fi
     echo "$org/$repo rev: $rev"
     echo "$org/$repo version: $version"
