@@ -37,10 +37,11 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace requirements_test.txt \
-      --replace "coverage==6.2.0" "coverage>=5.5" \
+      --replace "coverage==6.3.1" "coverage>=6.2" \
       --replace "jsonpickle==1.4.1" "jsonpickle>=1.4.1" \
       --replace "pipdeptree==2.2.1" "" \
       --replace "pylint-strict-informational==0.1" "" \
+      --replace "pytest==7.0.1" "pytest>=6.2.5" \
       --replace "pytest-cov==2.12.1" "pytest-cov>=2.12.1" \
       --replace "pytest-socket==0.4.1" "pytest-socket>=0.4.0" \
       --replace "pytest-test-groups==1.0.3" "" \
