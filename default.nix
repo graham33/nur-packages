@@ -48,6 +48,14 @@ let
       simplisafe-python = null;
     };
 
+    python3 = let
+      packageOverrides = pySelf: pySuper: rec {
+        json_exporter = pySelf.callPackage ./pkgs/json_exporter { };
+      };
+    in
+      pkgs.python3.override { inherit packageOverrides; self = python3; };
+    python3Packages = python3.pkgs;
+
     tesla-custom-component = callPackage ./pkgs/tesla-custom-component { };
   });
 
@@ -67,7 +75,10 @@ in rec {
     tesla-custom-component
   ;
 
-  # packages to cache (all versions)
+  python3Packages = {
+    inherit (myPackages.python3Packages) json_exporter;
+  };
+
   inherit (home-assistant.python.pkgs)
     homeassistant
     homeassistant-stubs
