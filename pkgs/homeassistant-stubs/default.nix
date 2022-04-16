@@ -17,6 +17,11 @@ buildPythonPackage rec {
     sha256 = "0v688hdb51p1ilsc54830ql870sy23ibkgh1ync5kscz4if4ivb7";
   };
 
+  postPatch = ''
+    substituteInPlace pyproject.toml \
+      --replace 'homeassistant = "2022.4.2"' 'homeassistant = "2022.4.4"'
+  '';
+
   nativeBuildInputs = [
     poetry-core
   ];

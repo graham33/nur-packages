@@ -4,8 +4,10 @@
 , isPy37
 , isPy3k
 , coverage
+, fnvhash
 , homeassistant
 , jsonpickle
+, lru-dict
 , mock-open
 , pytest
 , pytest-aiohttp
@@ -39,9 +41,10 @@ buildPythonPackage rec {
     substituteInPlace requirements_test.txt \
       --replace "coverage==6.3.1" "coverage>=6.2" \
       --replace "jsonpickle==1.4.1" "jsonpickle>=1.4.1" \
+      --replace "freezegun==1.2.1" "jsonpickle>=1.1.0" \
       --replace "pipdeptree==2.2.1" "" \
       --replace "pylint-strict-informational==0.1" "" \
-      --replace "pytest==7.0.1" "pytest>=6.2.5" \
+      --replace "pytest==7.1.1" "pytest>=7.0.1" \
       --replace "pytest-cov==2.12.1" "pytest-cov>=2.12.1" \
       --replace "pytest-socket==0.4.1" "pytest-socket>=0.4.0" \
       --replace "pytest-test-groups==1.0.3" "" \
@@ -56,7 +59,9 @@ buildPythonPackage rec {
   '';
 
   propagatedBuildInputs = [
+    fnvhash
     homeassistant
+    lru-dict
     pytest
     pytest-socket
     requests-mock
@@ -85,6 +90,6 @@ buildPythonPackage rec {
     homepage = "https://github.com/MatthewFlamm/pytest-homeassistant-custom-component";
     description = "Package to automatically extract testing plugins from Home Assistant for custom component testing. ";
     license = licenses.mit;
-    #maintainers = with maintainers; [ graham33 ];
+    maintainers = with maintainers; [ graham33 ];
   };
 }
