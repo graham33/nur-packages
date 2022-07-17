@@ -27,24 +27,24 @@
 
 buildPythonPackage rec {
   pname = "pytest-homeassistant-custom-component";
-  version = "0.9.13";
+  version = "0.10.5";
   disabled = !isPy3k || isPy37;
 
   src = fetchFromGitHub {
     owner = "MatthewFlamm";
     repo = pname;
     rev = version;
-    sha256 = "1ib9njgcchm0cnzrdakfp7v6cyzfmvrwdijm2cs6ifs6m4xrvg81";
+    sha256 = "0kskwypw5h67f8hqbvnnffl00k8kiyprdds0wa11xrvhhrrmghvl";
   };
 
   postPatch = ''
     substituteInPlace requirements_test.txt \
-      --replace "coverage==6.4" "coverage>=6.3.2" \
+      --replace "coverage==6.4.1" "coverage>=6.3.2" \
       --replace "jsonpickle==1.4.1" "jsonpickle>=1.4.1" \
       --replace "freezegun==1.2.1" "jsonpickle>=1.1.0" \
       --replace "pipdeptree==2.2.1" "" \
       --replace "pylint-strict-informational==0.1" "" \
-      --replace "pytest==7.1.1" "pytest>=7.0.1" \
+      --replace "pytest==7.1.2" "pytest>=7.1.1" \
       --replace "pytest-cov==2.12.1" "pytest-cov>=2.12.1" \
       --replace "pytest-socket==0.4.1" "pytest-socket>=0.4.0" \
       --replace "pytest-test-groups==1.0.3" "" \
@@ -53,7 +53,7 @@ buildPythonPackage rec {
       --replace "requests_mock==1.9.2" "requests_mock>=1.9.2" \
       --replace "responses==0.12.0" "responses>=0.12.0" \
       --replace "respx==0.19.0" "respx>=0.19.0" \
-      --replace "sqlalchemy==1.4.37" "sqlalchemy>=1.4.36" \
+      --replace "sqlalchemy==1.4.38" "sqlalchemy>=1.4.38" \
       --replace "stdlib-list==0.7.0" "" \
       --replace "tqdm==4.49.0" "tqdm>=4.49.0"
   '';
