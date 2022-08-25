@@ -39,7 +39,7 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace requirements_test.txt \
-      --replace "coverage==6.4.1" "coverage>=6.3.2" \
+      --replace "coverage==6.4.2" "coverage>=6.3.2" \
       --replace "jsonpickle==1.4.1" "jsonpickle>=1.4.1" \
       --replace "freezegun==1.2.1" "jsonpickle>=1.1.0" \
       --replace "pipdeptree==2.2.1" "" \
@@ -47,6 +47,7 @@ buildPythonPackage rec {
       --replace "pytest==7.1.2" "pytest>=7.1.1" \
       --replace "pytest-cov==2.12.1" "pytest-cov>=2.12.1" \
       --replace "pytest-socket==0.4.1" "pytest-socket>=0.4.0" \
+      --replace "pytest-sugar==0.9.5" "pytest-sugar>=0.9.4" \
       --replace "pytest-test-groups==1.0.3" "" \
       --replace "pytest-timeout==2.1.0" "pytest-timeout>=2.0.2" \
       --replace "pytest-xdist==2.4.0" "pytest-xdist>=2.3.0" \
