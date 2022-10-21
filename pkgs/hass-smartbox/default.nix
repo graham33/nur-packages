@@ -22,6 +22,7 @@ with home-assistant.python.pkgs; buildHomeAssistantCustomComponent rec {
 
   checkInputs = [
     homeassistant
+    homeassistant-stubs
     pytest-aiohttp
     pytest-asyncio
     pytest-cov
