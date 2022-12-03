@@ -6,6 +6,10 @@ set -euo pipefail
 
 EMACS_OVERLAY="https://github.com/nix-community/emacs-overlay"
 
+home_assistant_version() {
+    nix eval '.#home-assistant.version" | sed -e 's/"//g'
+}
+
 upgrade_emacs_overlay() {
     rev=$(git ls-remote "$EMACS_OVERLAY" refs/heads/master | awk '{print $1}')
     hash=$(nix-prefetch-url --unpack "$EMACS_OVERLAY/archive/$rev.tar.gz")
@@ -17,7 +21,7 @@ upgrade_emacs_overlay() {
 upgrade_homeassistant_stubs() {
     org="KapJI"
     repo="homeassistant-stubs"
-    homeassistant_version=$(nix eval -I 'nixpkgs=channel:nixos-unstable' "nixpkgs#home-assistant.version" | sed -e 's/"//g')
+    homeassistant_version=$(home_assistant_version)
     version=$homeassistant_version
     sha256=$(nix-prefetch-git --quiet https://github.com/$org/$repo $homeassistant_version | jq .sha256)
     echo "$org/$repo: version=$version, sha256=$sha256 (homeassistant-version=$homeassistant_version)"
@@ -28,7 +32,7 @@ upgrade_homeassistant_stubs() {
 upgrade_phacc() {
     org="MatthewFlamm"
     repo="pytest-homeassistant-custom-component"
-    homeassistant_version=$(nix eval -I 'nixpkgs=channel:nixos-unstable' "nixpkgs#home-assistant.version" | sed -e 's/"//g')
+    homeassistant_version=$(home_assistant_version)
     version=$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/$org/$repo/releases | jq ".[] | select(.body|test(\"$homeassistant_version\")).tag_name" | sed -e 's/"//g' | head -1)
     sha256=$(nix-prefetch-git --quiet https://github.com/$org/$repo $version | jq .sha256)
     echo "$org/$repo: version=$version, sha256=$sha256 (homeassistant-version=$homeassistant_version)"
