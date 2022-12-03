@@ -32,6 +32,10 @@ upgrade_phacc() {
     repo="pytest-homeassistant-custom-component"
     homeassistant_version=$(home_assistant_version)
     version=$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/$org/$repo/releases | jq ".[] | select(.body|test(\"$homeassistant_version\")).tag_name" | sed -e 's/"//g' | head -1)
+    if [ -z "$version" ]; then
+        echo "Can't find version of $org/$repo for home-assistant $homeassistant_version" >&2
+        exit 1
+    fi
     sha256=$(nix-prefetch-git --quiet https://github.com/$org/$repo $version | jq .sha256)
     echo "$org/$repo: version=$version, sha256=$sha256 (homeassistant-version=$homeassistant_version)"
     sed -i pkgs/$repo/default.nix -e "s/version = \"[0-9\.]*\"/version = \"$version\"/"
