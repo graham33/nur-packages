@@ -1,13 +1,11 @@
-#!/usr/bin/env nix-shell
-#! nix-shell -i zsh -p pkgs.git pkgs.semver-tool
-# Script for helping with bumps and upgrades
+#!/usr/bin/env zsh
 
 set -euo pipefail
 
 EMACS_OVERLAY="https://github.com/nix-community/emacs-overlay"
 
 home_assistant_version() {
-    nix eval '.#home-assistant.version" | sed -e 's/"//g'
+    nix eval .#home-assistant.version | sed -e 's/"//g'
 }
 
 upgrade_emacs_overlay() {
