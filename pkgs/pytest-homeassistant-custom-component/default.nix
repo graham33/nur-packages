@@ -5,6 +5,7 @@
 , isPy3k
 , coverage
 , fnvhash
+, freezegun
 , homeassistant
 , jsonpickle
 , lru-dict
@@ -62,6 +63,7 @@ buildPythonPackage rec {
 
   propagatedBuildInputs = [
     fnvhash
+    freezegun
     homeassistant
     lru-dict
     numpy
