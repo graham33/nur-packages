@@ -48,16 +48,18 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace requirements_test.txt \
+      --replace "coverage==7.2.3" "coverage>=7.2.1" \
       --replace "numpy==1.23.2" "numpy>=1.23.2" \
+      --replace "pipdeptree==2.7.0" "pipdeptree>=2.7.0" \
       --replace "pydantic==1.10.7" "pydantic>=1.10.5" \
       --replace "pylint-per-file-ignores==1.1.0" "pylint-per-file-ignores>=1.1.0" \
-      --replace "pytest==7.2.2" "pytest>=7.2.1" \
+      --replace "pytest==7.3.1" "pytest>=7.2.1" \
       --replace "pytest-cov==3.0.0" "pytest-cov>=3.0.0" \
       --replace "pytest-socket==0.5.1" "pytest-socket>=0.5.1" \
+      --replace "pytest-sugar==0.9.6" "pytest-sugar>=0.9.6" \
       --replace "pytest-test-groups==1.0.3" "" \
       --replace "pytest-timeout==2.1.0" "pytest-timeout>=2.0.2" \
       --replace "respx==0.20.1" "respx>=0.20.0" \
-      --replace "sqlalchemy==2.0.7" "sqlalchemy>=2.0.7" \
       --replace "syrupy==4.0.0" "syrupy>=4.0.0" \
       --replace "tqdm==4.64.0" "tqdm>=4.64.0"
   '';
