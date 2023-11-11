@@ -34,12 +34,10 @@ let
 
     homeAssistantPackageOverrides = pySelf: pySuper: rec {
       async-property = pySelf.callPackage ./pkgs/async-property { };
-      buildHomeAssistantCustomComponent = callPackage pkgs/build-support/build-home-assistant-custom-component {};
 
       # authcaptureproxy = pySelf.callPackage ./pkgs/authcaptureproxy { };
       # fiblary3 = pySelf.callPackage ./pkgs/fiblary3 { };
       garminconnect = pySelf.callPackage ./pkgs/garminconnect { };
-      homeassistant = (pySelf.toPythonModule home-assistant);
       homeassistant-stubs = pySelf.callPackage ./pkgs/homeassistant-stubs { };
       libdyson = pySelf.callPackage ./pkgs/libdyson { };
       monkeytype = pySelf.callPackage ./pkgs/monkeytype { };
@@ -75,7 +73,7 @@ let
     python3Packages = python3.pkgs;
 
     solis-sensor = callPackage ./pkgs/solis-sensor { };
-    tesla-custom-component = callPackage ./pkgs/tesla-custom-component { };
+    tesla-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/tesla-custom-component { };
   });
 
   # pkg_21-11 = pkg: if (builtins.match "^21\.11.*" pkgs.lib.version != null) then pkg else null;
