@@ -11,9 +11,6 @@
 let
   myPackages = pkgs.lib.makeScope pkgs.newScope (self: with self; {
 
-    ha-dyson = callPackage ./pkgs/ha-dyson { };
-    ha-dyson-cloud = callPackage ./pkgs/ha-dyson-cloud { };
-
     home-assistant = (pkgs.home-assistant.override {
       # TODO: fix upstream
       extraPackages = ps: [ps.ifaddr];
@@ -60,6 +57,8 @@ let
 
     # Home Assistant packages
     frigate-hass-integration = home-assistant.python.pkgs.callPackage ./pkgs/frigate-hass-integration { };
+    ha-dyson = home-assistant.python.pkgs.callPackage ./pkgs/ha-dyson { };
+    ha-dyson-cloud = home-assistant.python.pkgs.callPackage ./pkgs/ha-dyson-cloud { };
     hass-smartbox = home-assistant.python.pkgs.callPackage ./pkgs/hass-smartbox {};
     heatmiser-for-home-assistant = home-assistant.python.pkgs.callPackage ./pkgs/heatmiser-for-home-assistant { };
     miele-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/miele-custom-component { };
