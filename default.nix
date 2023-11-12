@@ -62,7 +62,7 @@ let
 
     miele-custom-component = callPackage ./pkgs/miele-custom-component { };
 
-    octopus-energy = callPackage ./pkgs/octopus-energy { };
+    octopus-energy = home-assistant.python.pkgs.callPackage ./pkgs/octopus-energy { };
 
     python3 = let
       packageOverrides = pySelf: pySuper: rec {
