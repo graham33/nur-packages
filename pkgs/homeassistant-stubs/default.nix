@@ -2,7 +2,7 @@
 , buildPythonPackage
 , fetchFromGitHub
 , poetry-core
-, homeassistant
+, home-assistant
 }:
 
 buildPythonPackage rec {
@@ -22,7 +22,7 @@ buildPythonPackage rec {
   ];
 
   propagatedBuildInputs = [
-    homeassistant
+    home-assistant
   ];
 
   pythonImportsCheck = [ "homeassistant-stubs" ];
