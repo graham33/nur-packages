@@ -6,7 +6,7 @@
 , coverage
 , fnvhash
 , freezegun
-, homeassistant
+, home-assistant
 , jsonpickle
 , lru-dict
 , mock-open
@@ -64,7 +64,7 @@ buildPythonPackage rec {
   propagatedBuildInputs = [
     fnvhash
     freezegun
-    homeassistant
+    home-assistant
     lru-dict
     numpy
     paho-mqtt

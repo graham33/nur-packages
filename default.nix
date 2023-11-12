@@ -11,14 +11,9 @@
 let
   myPackages = pkgs.lib.makeScope pkgs.newScope (self: with self; {
 
-    frigate-hass-integration = callPackage ./pkgs/frigate-hass-integration { };
-
     ha-dyson = callPackage ./pkgs/ha-dyson { };
     ha-dyson-cloud = callPackage ./pkgs/ha-dyson-cloud { };
     ha-hildebrandglow-dcc = callPackage ./pkgs/ha-hildebrandglow-dcc { };
-
-    hass-smartbox = callPackage ./pkgs/hass-smartbox {};
-    heatmiser-for-home-assistant = callPackage ./pkgs/heatmiser-for-home-assistant { };
 
     home-assistant = (pkgs.home-assistant.override {
       # TODO: fix upstream
@@ -61,8 +56,6 @@ let
 
     miele-custom-component = callPackage ./pkgs/miele-custom-component { };
 
-    octopus-energy = home-assistant.python.pkgs.callPackage ./pkgs/octopus-energy { };
-
     python3 = let
       packageOverrides = pySelf: pySuper: rec {
         json_exporter = pySelf.callPackage ./pkgs/json_exporter { };
@@ -71,6 +64,11 @@ let
       pkgs.python3.override { inherit packageOverrides; self = python3; };
     python3Packages = python3.pkgs;
 
+    # Home Assistant packages
+    frigate-hass-integration = home-assistant.python.pkgs.callPackage ./pkgs/frigate-hass-integration { };
+    hass-smartbox = home-assistant.python.pkgs.callPackage ./pkgs/hass-smartbox {};
+    heatmiser-for-home-assistant = home-assistant.python.pkgs.callPackage ./pkgs/heatmiser-for-home-assistant { };
+    octopus-energy = home-assistant.python.pkgs.callPackage ./pkgs/octopus-energy { };
     solis-sensor = home-assistant.python.pkgs.callPackage ./pkgs/solis-sensor { };
     tesla-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/tesla-custom-component { };
   });
