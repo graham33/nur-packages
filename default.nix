@@ -71,7 +71,7 @@ let
       pkgs.python3.override { inherit packageOverrides; self = python3; };
     python3Packages = python3.pkgs;
 
-    solis-sensor = callPackage ./pkgs/solis-sensor { };
+    solis-sensor = home-assistant.python.pkgs.callPackage ./pkgs/solis-sensor { };
     tesla-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/tesla-custom-component { };
   });
 
