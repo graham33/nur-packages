@@ -98,7 +98,6 @@ in rec {
 
   inherit (home-assistant.python.pkgs)
     async-property
-    homeassistant
     homeassistant-stubs
     neohubapi
     pylint-per-file-ignores
