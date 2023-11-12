@@ -18,7 +18,6 @@ let
     ha-hildebrandglow-dcc = callPackage ./pkgs/ha-hildebrandglow-dcc { };
 
     hass-smartbox = callPackage ./pkgs/hass-smartbox {};
-    hassio-ecoflow = callPackage ./pkgs/hassio-ecoflow { };
     heatmiser-for-home-assistant = callPackage ./pkgs/heatmiser-for-home-assistant { };
 
     home-assistant = (pkgs.home-assistant.override {
@@ -92,7 +91,6 @@ in rec {
     ha-dyson-cloud
     ha-hildebrandglow-dcc
     hass-smartbox
-    hassio-ecoflow
     heatmiser-for-home-assistant
     home-assistant
     home-assistant-miele
