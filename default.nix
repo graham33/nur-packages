@@ -40,7 +40,6 @@ let
       pytest-picked = pySelf.callPackage ./pkgs/pytest-picked { };
       python-engineio_3 = pySelf.callPackage ./pkgs/python-engineio/3.nix { };
       python-socketio_4 = pySelf.callPackage ./pkgs/python-socketio/4.nix { };
-      ring_doorbell = pySelf.callPackage ./pkgs/ring_doorbell { };
       smartbox = pySelf.callPackage ./pkgs/smartbox { };
       # typer = pySelf.callPackage ./pkgs/typer { };
 
