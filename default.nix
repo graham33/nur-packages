@@ -24,8 +24,6 @@ let
       doInstallCheck = false;
     });
 
-    home-assistant-miele = callPackage ./pkgs/home-assistant-miele { };
-
     homeAssistantPackageOverrides = pySelf: pySuper: rec {
       async-property = pySelf.callPackage ./pkgs/async-property { };
 
@@ -54,8 +52,6 @@ let
 
     libedgetpu = callPackage ./pkgs/libedgetpu { };
 
-    miele-custom-component = callPackage ./pkgs/miele-custom-component { };
-
     python3 = let
       packageOverrides = pySelf: pySuper: rec {
         json_exporter = pySelf.callPackage ./pkgs/json_exporter { };
@@ -68,6 +64,7 @@ let
     frigate-hass-integration = home-assistant.python.pkgs.callPackage ./pkgs/frigate-hass-integration { };
     hass-smartbox = home-assistant.python.pkgs.callPackage ./pkgs/hass-smartbox {};
     heatmiser-for-home-assistant = home-assistant.python.pkgs.callPackage ./pkgs/heatmiser-for-home-assistant { };
+    miele-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/miele-custom-component { };
     octopus-energy = home-assistant.python.pkgs.callPackage ./pkgs/octopus-energy { };
     solis-sensor = home-assistant.python.pkgs.callPackage ./pkgs/solis-sensor { };
     tesla-custom-component = home-assistant.python.pkgs.callPackage ./pkgs/tesla-custom-component { };
@@ -91,7 +88,6 @@ in rec {
     hass-smartbox
     heatmiser-for-home-assistant
     home-assistant
-    home-assistant-miele
     homeAssistantPackageOverrides
     libedgetpu
     miele-custom-component
