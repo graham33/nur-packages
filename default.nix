@@ -13,7 +13,6 @@ let
 
     ha-dyson = callPackage ./pkgs/ha-dyson { };
     ha-dyson-cloud = callPackage ./pkgs/ha-dyson-cloud { };
-    ha-hildebrandglow-dcc = callPackage ./pkgs/ha-hildebrandglow-dcc { };
 
     home-assistant = (pkgs.home-assistant.override {
       # TODO: fix upstream
@@ -84,7 +83,6 @@ in rec {
     frigate-hass-integration
     ha-dyson
     ha-dyson-cloud
-    ha-hildebrandglow-dcc
     hass-smartbox
     heatmiser-for-home-assistant
     home-assistant
