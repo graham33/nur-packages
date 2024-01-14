@@ -71,6 +71,9 @@ jobs:
           -I $PWD
     - name: Build nix packages
       run: nix shell .#nix-build-uncached -c nix-build-uncached -build-flags '-L' ci.nix -A cacheOutputs
+      env:
+        # TODO: remove
+        NIXPKGS_ALLOW_INSECURE: 1
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}
