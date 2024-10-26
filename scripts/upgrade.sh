@@ -107,8 +107,8 @@ upgrade_hass_smartbox() {
 if [ "$#" -lt 1 ]; then
     upgrade_homeassistant_stubs
     upgrade_phacc
-    upgrade_hass_smartbox
-    upgrade_smartbox
+    # upgrade_hass_smartbox
+    # upgrade_smartbox
 else
     if [ "$#" -gt 1 ]; then
         # User supplied a ref
